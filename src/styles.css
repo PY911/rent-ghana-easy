@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Rentafro design system — Ghana rental marketplace.
+ * Y3fr3 Wo design system — Ghana rental marketplace.
  * Warm ivory canvas, deep forest green primary, kente gold accent, clay support.
  * All colors are oklch semantic tokens. Never hardcode colors in components.
  */
@@ -179,7 +179,7 @@
   h4,
   .font-display {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 }
 

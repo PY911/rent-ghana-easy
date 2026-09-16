@@ -17,24 +17,24 @@ import {
 } from "@/components/ui/select";
 
 type BrowseSearch = {
-  q?: string;
-  category?: string;
-  city?: string;
-  sort?: string;
-  max?: number;
+  q?: string | undefined;
+  category?: string | undefined;
+  city?: string | undefined;
+  sort?: string | undefined;
+  max?: number | undefined;
 };
 
 export const Route = createFileRoute("/browse")({
   validateSearch: (search: Record<string, unknown>): BrowseSearch => ({
-    q: typeof search.q === "string" ? search.q : undefined,
-    category: typeof search.category === "string" ? search.category : undefined,
-    city: typeof search.city === "string" ? search.city : undefined,
-    sort: typeof search.sort === "string" ? search.sort : undefined,
-    max: search.max ? Number(search.max) : undefined,
+    q: typeof search["q"] === "string" ? search["q"] : undefined,
+    category: typeof search["category"] === "string" ? search["category"] : undefined,
+    city: typeof search["city"] === "string" ? search["city"] : undefined,
+    sort: typeof search["sort"] === "string" ? search["sort"] : undefined,
+    max: search["max"] ? Number(search["max"]) : undefined,
   }),
   head: () => ({
     meta: [
-      { title: "Browse rentals in Ghana — Rentafro" },
+      { title: "Browse rentals in Ghana — Y3fr3 Wo" },
       {
         name: "description",
         content:
@@ -45,6 +45,8 @@ export const Route = createFileRoute("/browse")({
         property: "og:description",
         content: "Filter thousands of rental items by city, category and price in cedis.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Browse,
@@ -213,7 +215,7 @@ function Browse() {
             </div>
           ) : (
             <div className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              {listings!.map((listing) => (
+              {(listings ?? []).map((listing) => (
                 <ListingCard key={listing.id} listing={listing} />
               ))}
             </div>

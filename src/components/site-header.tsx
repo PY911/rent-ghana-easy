@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Menu, Search, Store, Tent, User } from "lucide-react";
+import { Menu, Search, Store, User, Waves } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
@@ -39,10 +39,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-4 px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
           <span className="brand-gradient flex size-9 items-center justify-center rounded-xl">
-            <Tent className="size-5 text-primary-foreground" />
+            <Waves className="size-5 text-primary-foreground" />
           </span>
-          <span className="font-display text-lg font-semibold tracking-tight">
-            Rentafro<span className="text-accent">.</span>
+          <span className="font-display text-lg font-semibold">
+            Y3fr3 Wo<span className="text-accent">.</span>
           </span>
         </Link>
 
@@ -67,7 +67,7 @@ export function SiteHeader() {
           </Button>
 
           <Button asChild variant="outline" className="hidden sm:inline-flex">
-            <Link to="/vendor">
+            <Link to="/vendors">
               <Store className="size-4" /> List your items
             </Link>
           </Button>
@@ -85,10 +85,10 @@ export function SiteHeader() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link to="/dashboard">My bookings</Link>
+                  <Link to="/browse">My bookings</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/vendor">Vendor hub</Link>
+                  <Link to="/vendors">Vendor hub</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleSignOut}>Sign out</DropdownMenuItem>
@@ -119,7 +119,7 @@ export function SiteHeader() {
                   </Link>
                 ))}
                 <Link
-                  to="/vendor"
+                  to="/vendors"
                   onClick={() => setOpen(false)}
                   className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary"
                 >
@@ -127,7 +127,7 @@ export function SiteHeader() {
                 </Link>
                 {user ? (
                   <Link
-                    to="/dashboard"
+                    to="/browse"
                     onClick={() => setOpen(false)}
                     className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary"
                   >

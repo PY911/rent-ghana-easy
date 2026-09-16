@@ -61,11 +61,11 @@ export const newestListingsQuery = queryOptions({
 });
 
 export type BrowseFilters = {
-  q?: string;
-  category?: string;
-  city?: string;
-  sort?: string;
-  max?: number;
+  q?: string | undefined;
+  category?: string | undefined;
+  city?: string | undefined;
+  sort?: string | undefined;
+  max?: number | undefined;
 };
 
 export function browseListingsQuery(filters: BrowseFilters) {
@@ -176,12 +176,13 @@ export function myBookingsQuery(userId: string | undefined) {
     queryKey: ["bookings", "mine", userId],
     enabled: Boolean(userId),
     queryFn: async (): Promise<BookingWithListing[]> => {
+      if (!userId) return [];
       const { data, error } = await supabase
         .from("bookings")
         .select(
           "*, listing:listings(id,title,slug,images,price,price_unit), vendor:vendors(id,name,slug,phone,whatsapp)",
         )
-        .eq("renter_id", userId!)
+        .eq("renter_id", userId)
         .order("created_at", { ascending: false });
       if (error) throw error;
       return (data ?? []) as unknown as BookingWithListing[];
@@ -194,10 +195,11 @@ export function myVendorQuery(userId: string | undefined) {
     queryKey: ["vendor", "mine", userId],
     enabled: Boolean(userId),
     queryFn: async (): Promise<Vendor | null> => {
+      if (!userId) return null;
       const { data, error } = await supabase
         .from("vendors")
         .select("*")
-        .eq("owner_id", userId!)
+        .eq("owner_id", userId)
         .maybeSingle();
       if (error) throw error;
       return data ?? null;
@@ -210,10 +212,11 @@ export function vendorListingsQuery(vendorId: string | undefined) {
     queryKey: ["listings", "vendor", vendorId],
     enabled: Boolean(vendorId),
     queryFn: async (): Promise<ListingWithRelations[]> => {
+      if (!vendorId) return [];
       const { data, error } = await supabase
         .from("listings")
         .select(LISTING_SELECT)
-        .eq("vendor_id", vendorId!)
+        .eq("vendor_id", vendorId)
         .order("created_at", { ascending: false });
       if (error) throw error;
       return (data ?? []) as unknown as ListingWithRelations[];
@@ -226,12 +229,13 @@ export function vendorBookingsQuery(vendorId: string | undefined) {
     queryKey: ["bookings", "vendor", vendorId],
     enabled: Boolean(vendorId),
     queryFn: async (): Promise<BookingWithListing[]> => {
+      if (!vendorId) return [];
       const { data, error } = await supabase
         .from("bookings")
         .select(
           "*, listing:listings(id,title,slug,images,price,price_unit), vendor:vendors(id,name,slug,phone,whatsapp)",
         )
-        .eq("vendor_id", vendorId!)
+        .eq("vendor_id", vendorId)
         .order("created_at", { ascending: false });
       if (error) throw error;
       return (data ?? []) as unknown as BookingWithListing[];

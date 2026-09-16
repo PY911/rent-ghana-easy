@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Tent } from "lucide-react";
+import { Heart, Waves } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -8,9 +8,9 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
             <span className="brand-gradient flex size-9 items-center justify-center rounded-xl">
-              <Tent className="size-5 text-primary-foreground" />
+              <Waves className="size-5 text-primary-foreground" />
             </span>
-            <span className="font-display text-lg font-semibold">Rentafro.</span>
+            <span className="font-display text-lg font-semibold">Y3fr3 Wo.</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             Ghana&apos;s rental marketplace. Compare verified vendors for events, construction, power,
@@ -43,12 +43,12 @@ export function SiteFooter() {
           <h3 className="text-sm font-semibold">For vendors</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li>
-              <Link to="/vendor" className="hover:text-foreground">
+              <Link to="/vendors" className="hover:text-foreground">
                 List your items
               </Link>
             </li>
             <li>
-              <Link to="/dashboard" className="hover:text-foreground">
+              <Link to="/browse" className="hover:text-foreground">
                 My bookings
               </Link>
             </li>
@@ -61,7 +61,11 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border px-4 py-6 text-center text-xs text-muted-foreground sm:px-6">
-        © {new Date().getFullYear()} Rentafro — built for renters and vendors across Ghana.
+        <span>© {new Date().getFullYear()} Y3fr3 Wo.</span>
+        <span className="mx-2">·</span>
+        <span className="inline-flex items-center gap-1">
+          Built with <Heart className="size-3 fill-clay text-clay" aria-label="love" /> in Accra
+        </span>
       </div>
     </footer>
   );

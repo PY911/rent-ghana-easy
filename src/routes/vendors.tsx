@@ -23,7 +23,7 @@ const allVendorsQuery = queryOptions({
 export const Route = createFileRoute("/vendors")({
   head: () => ({
     meta: [
-      { title: "Rental vendors in Ghana — Rentafro directory" },
+      { title: "Rental vendors in Ghana — Y3fr3 Wo" },
       {
         name: "description",
         content:
@@ -34,6 +34,8 @@ export const Route = createFileRoute("/vendors")({
         property: "og:description",
         content: "Ratings, specialities and locations for rental vendors across Ghana.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Vendors,
@@ -58,8 +60,7 @@ function Vendors() {
           : (data ?? []).map((vendor) => (
               <Link
                 key={vendor.id}
-                to="/vendors/$slug"
-                params={{ slug: vendor.slug }}
+                to="/browse"
                 className="surface-card lift-hover block p-6"
               >
                 <div className="flex items-start gap-3">
@@ -77,14 +78,12 @@ function Vendors() {
                   </div>
                 </div>
                 <p className="mt-4 line-clamp-3 text-sm text-muted-foreground">
-                  {vendor.description}
+                  {vendor.about}
                 </p>
                 <p className="mt-4 inline-flex items-center gap-1 text-sm font-medium">
                   <Star className="size-4 fill-accent text-accent" />
                   {Number(vendor.rating).toFixed(1)}
-                  <span className="text-xs font-normal text-muted-foreground">
-                    ({vendor.review_count} reviews)
-                  </span>
+                  <span className="text-xs font-normal text-muted-foreground">verified renter rating</span>
                 </p>
               </Link>
             ))}
@@ -100,7 +99,7 @@ function Vendors() {
           </p>
         </div>
         <Button asChild size="lg" variant="secondary">
-          <Link to="/vendor">Become a vendor</Link>
+          <Link to="/auth">Become a vendor</Link>
         </Button>
       </div>
     </div>
