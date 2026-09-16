@@ -61,11 +61,11 @@ export const newestListingsQuery = queryOptions({
 });
 
 export type BrowseFilters = {
-  q?: string;
-  category?: string;
-  city?: string;
-  sort?: string;
-  max?: number;
+  q?: string | undefined;
+  category?: string | undefined;
+  city?: string | undefined;
+  sort?: string | undefined;
+  max?: number | undefined;
 };
 
 export function browseListingsQuery(filters: BrowseFilters) {

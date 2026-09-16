@@ -1,4 +1,4 @@
-- [ ] Rebrand all visible Rentafro references to Y3fr3 Wo
-- [ ] Improve the marketplace UI and visual polish
-- [ ] Add “Built with love in Accra” to the footer
-- [ ] Finish and verify the public showcase pages
+- [x] Rebrand all visible Rentafro references to Y3fr3 Wo
+- [x] Improve the marketplace UI and visual polish
+- [x] Add “Built with love in Accra” to the footer
+- [x] Finish and verify the public showcase pages
