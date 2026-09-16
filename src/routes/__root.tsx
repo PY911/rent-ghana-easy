@@ -87,13 +87,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Rentafro — Rent anything in Ghana" },
+      { title: "Y3fr3 Wo — Rent anything in Ghana" },
       {
         name: "description",
         content:
-          "Rentafro is Ghana's rental marketplace for event gear, construction plant, generators, vehicles and production kit.",
+          "Y3fr3 Wo is Ghana's rental marketplace for event gear, construction plant, generators, vehicles and production kit.",
       },
-      { property: "og:site_name", content: "Rentafro" },
+      { property: "og:site_name", content: "Y3fr3 Wo" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

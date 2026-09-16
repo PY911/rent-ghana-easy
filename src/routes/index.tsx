@@ -24,18 +24,20 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rentafro — Rent event, construction & power gear in Ghana" },
+      { title: "Y3fr3 Wo — Rent anything in Ghana" },
       {
         name: "description",
         content:
           "Rent chairs, canopies, sound systems, generators, excavators, vehicles and camera kits from verified Ghanaian vendors. Compare prices in cedis and book online.",
       },
-      { property: "og:title", content: "Rentafro — Ghana's rental marketplace" },
+      { property: "og:title", content: "Y3fr3 Wo — Ghana's rental marketplace" },
       {
         property: "og:description",
         content:
           "Compare verified vendors across Ghana for events, construction, power, vehicles and production gear.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -71,7 +73,7 @@ function Hero() {
           <Sparkles className="size-3.5" /> 250+ verified vendors across Ghana
         </span>
         <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.05] text-primary-foreground sm:text-6xl">
-          Rent anything you need,
+          Y3fr3 wo. We&apos;ll find it.
           <br />
           anywhere in Ghana.
         </h1>
@@ -267,8 +269,7 @@ function VendorStrip() {
         {(data ?? []).map((vendor) => (
           <Link
             key={vendor.id}
-            to="/vendors/$slug"
-            params={{ slug: vendor.slug }}
+            to="/vendors"
             className="surface-card lift-hover block p-5"
           >
             <div className="flex items-center gap-2">
@@ -282,7 +283,7 @@ function VendorStrip() {
                 </p>
               </div>
             </div>
-            <p className="mt-3 line-clamp-2 text-sm text-muted-foreground">{vendor.description}</p>
+            <p className="mt-3 line-clamp-2 text-sm text-muted-foreground">{vendor.about}</p>
             <p className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary">
               <ShieldCheck className="size-3.5" /> {Number(vendor.rating).toFixed(1)} rating
             </p>
@@ -307,7 +308,7 @@ function VendorCta() {
           </p>
         </div>
         <Button asChild size="lg" variant="secondary">
-          <Link to="/vendor">Become a vendor</Link>
+          <Link to="/vendors">Become a vendor</Link>
         </Button>
       </div>
     </section>

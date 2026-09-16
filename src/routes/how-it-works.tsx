@@ -20,17 +20,19 @@ import {
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
     meta: [
-      { title: "How renting on Rentafro works — Ghana" },
+      { title: "How Y3fr3 Wo works — Ghana rentals" },
       {
         name: "description",
         content:
-          "Search, request your dates, get confirmed by a verified Ghanaian vendor, then pay by Mobile Money or card. Here's how renting and listing on Rentafro works.",
+          "Search, request your dates, get confirmed by a verified Ghanaian vendor, then pay by Mobile Money or card. Here's how renting and listing on Y3fr3 Wo works.",
       },
-      { property: "og:title", content: "How Rentafro works" },
+      { property: "og:title", content: "How Y3fr3 Wo works" },
       {
         property: "og:description",
         content: "Renting and listing on Ghana's rental marketplace, step by step.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: HowItWorks,
@@ -107,9 +109,9 @@ function HowItWorks() {
         <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-medium">
           <ShieldCheck className="size-3.5 text-primary" /> Verified vendors only
         </span>
-        <h1 className="mt-5 font-display text-4xl font-semibold sm:text-5xl">How Rentafro works</h1>
+        <h1 className="mt-5 font-display text-4xl font-semibold sm:text-5xl">How Y3fr3 Wo works</h1>
         <p className="mt-4 text-base text-muted-foreground">
-          Renting gear in Ghana usually means a dozen phone calls and no clear price. Rentafro puts
+          Renting gear in Ghana usually means a dozen phone calls and no clear price. Y3fr3 Wo puts
           the vendors, the rates and the dates in one place.
         </p>
       </div>
@@ -151,7 +153,7 @@ function HowItWorks() {
           ))}
         </div>
         <Button asChild size="lg" variant="outline" className="mt-8">
-          <Link to="/vendor">List your items</Link>
+          <Link to="/vendors">List your items</Link>
         </Button>
       </section>
 
