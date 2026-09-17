@@ -224,44 +224,62 @@ export type Database = {
       vendors: {
         Row: {
           about: string | null
+          address: string | null
           city: string
           created_at: string
           id: string
+          latitude: number | null
           logo_url: string | null
+          longitude: number | null
           name: string
           owner_id: string | null
           phone: string | null
+          place_id: string | null
           rating: number
+          review_count: number
           slug: string
           verified: boolean
+          website: string | null
           whatsapp: string | null
         }
         Insert: {
           about?: string | null
+          address?: string | null
           city?: string
           created_at?: string
           id?: string
+          latitude?: number | null
           logo_url?: string | null
+          longitude?: number | null
           name: string
           owner_id?: string | null
           phone?: string | null
+          place_id?: string | null
           rating?: number
+          review_count?: number
           slug: string
           verified?: boolean
+          website?: string | null
           whatsapp?: string | null
         }
         Update: {
           about?: string | null
+          address?: string | null
           city?: string
           created_at?: string
           id?: string
+          latitude?: number | null
           logo_url?: string | null
+          longitude?: number | null
           name?: string
           owner_id?: string | null
           phone?: string | null
+          place_id?: string | null
           rating?: number
+          review_count?: number
           slug?: string
           verified?: boolean
+          website?: string | null
           whatsapp?: string | null
         }
         Relationships: []
