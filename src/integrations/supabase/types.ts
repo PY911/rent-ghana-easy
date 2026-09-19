@@ -16,52 +16,82 @@ export type Database = {
     Tables: {
       bookings: {
         Row: {
+          admin_notes: string | null
+          balance_amount: number
+          balance_due_date: string | null
+          balance_paid_at: string | null
           contact_name: string | null
           contact_phone: string | null
           created_at: string
           delivery_address: string | null
+          deposit_amount: number
+          deposit_paid_at: string | null
           end_date: string
           id: string
           listing_id: string
           notes: string | null
+          payment_status: string
+          platform_fee: number
           quantity: number
+          reference: string | null
           renter_id: string
           start_date: string
           status: string
           total: number
           vendor_id: string
+          vendor_total: number
         }
         Insert: {
+          admin_notes?: string | null
+          balance_amount?: number
+          balance_due_date?: string | null
+          balance_paid_at?: string | null
           contact_name?: string | null
           contact_phone?: string | null
           created_at?: string
           delivery_address?: string | null
+          deposit_amount?: number
+          deposit_paid_at?: string | null
           end_date: string
           id?: string
           listing_id: string
           notes?: string | null
+          payment_status?: string
+          platform_fee?: number
           quantity?: number
+          reference?: string | null
           renter_id: string
           start_date: string
           status?: string
           total?: number
           vendor_id: string
+          vendor_total?: number
         }
         Update: {
+          admin_notes?: string | null
+          balance_amount?: number
+          balance_due_date?: string | null
+          balance_paid_at?: string | null
           contact_name?: string | null
           contact_phone?: string | null
           created_at?: string
           delivery_address?: string | null
+          deposit_amount?: number
+          deposit_paid_at?: string | null
           end_date?: string
           id?: string
           listing_id?: string
           notes?: string | null
+          payment_status?: string
+          platform_fee?: number
           quantity?: number
+          reference?: string | null
           renter_id?: string
           start_date?: string
           status?: string
           total?: number
           vendor_id?: string
+          vendor_total?: number
         }
         Relationships: [
           {
@@ -109,6 +139,8 @@ export type Database = {
       }
       listings: {
         Row: {
+          admin_approved: boolean
+          admin_notes: string | null
           category_id: string
           city: string
           created_at: string
@@ -124,8 +156,11 @@ export type Database = {
           status: string
           title: string
           vendor_id: string
+          vendor_price: number | null
         }
         Insert: {
+          admin_approved?: boolean
+          admin_notes?: string | null
           category_id: string
           city?: string
           created_at?: string
@@ -141,8 +176,11 @@ export type Database = {
           status?: string
           title: string
           vendor_id: string
+          vendor_price?: number | null
         }
         Update: {
+          admin_approved?: boolean
+          admin_notes?: string | null
           category_id?: string
           city?: string
           created_at?: string
@@ -158,6 +196,7 @@ export type Database = {
           status?: string
           title?: string
           vendor_id?: string
+          vendor_price?: number | null
         }
         Relationships: [
           {
@@ -203,6 +242,24 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -225,6 +282,7 @@ export type Database = {
         Row: {
           about: string | null
           address: string | null
+          approved: boolean
           city: string
           created_at: string
           id: string
@@ -245,6 +303,7 @@ export type Database = {
         Insert: {
           about?: string | null
           address?: string | null
+          approved?: boolean
           city?: string
           created_at?: string
           id?: string
@@ -265,6 +324,7 @@ export type Database = {
         Update: {
           about?: string | null
           address?: string | null
+          approved?: boolean
           city?: string
           created_at?: string
           id?: string
