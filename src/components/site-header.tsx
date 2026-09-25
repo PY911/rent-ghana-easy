@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Menu, Search, Store, User, Waves } from "lucide-react";
+import { Menu, Moon, Search, Store, Sun, User, Waves } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
+import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,6 +27,7 @@ export function SiteHeader() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   async function handleSignOut() {
     await queryClient.cancelQueries();
@@ -60,6 +62,15 @@ export function SiteHeader() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {theme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
+          </Button>
+
           <Button asChild variant="ghost" size="icon" className="md:hidden">
             <Link to="/browse" aria-label="Search rentals">
               <Search className="size-5" />
