@@ -1,7 +1,7 @@
 - [x] Rebrand all visible Rentafro references to Y3fr3 Wo
 - [x] Improve the marketplace UI and visual polish
 - [x] Add "Built with love in Accra" to the footer
-- [ ] Add the vendor earnings callout above the footer
+- [x] Add the vendor earnings callout above the footer
 - [x] Finish and verify the public showcase pages
 - [ ] Pricing model: vendor cost price + public price set by admin (per item)
 - [ ] Booking flow: request dates -> admin confirms -> deposit -> balance due day before
