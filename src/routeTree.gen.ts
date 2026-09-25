@@ -10,15 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as VendorsRouteImport } from './routes/vendors'
+import { Route as AuthenticatedBookingsRouteImport } from './routes/_authenticated/bookings'
 import { Route as ListingsSlugRouteImport } from './routes/listings.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -41,6 +47,11 @@ const VendorsRoute = VendorsRouteImport.update({
   path: '/vendors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedBookingsRoute = AuthenticatedBookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const ListingsSlugRoute = ListingsSlugRouteImport.update({
   id: '/listings/$slug',
   path: '/listings/$slug',
@@ -53,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/browse': typeof BrowseRoute
   '/how-it-works': typeof HowItWorksRoute
   '/vendors': typeof VendorsRoute
+  '/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
 }
 export interface FileRoutesByTo {
@@ -61,36 +73,54 @@ export interface FileRoutesByTo {
   '/browse': typeof BrowseRoute
   '/how-it-works': typeof HowItWorksRoute
   '/vendors': typeof VendorsRoute
+  '/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/browse': typeof BrowseRoute
   '/how-it-works': typeof HowItWorksRoute
   '/vendors': typeof VendorsRoute
+  '/_authenticated/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/browse' | '/how-it-works' | '/vendors' | '/listings/$slug'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    '/' | '/auth' | '/browse' | '/how-it-works' | '/vendors' | '/listings/$slug'
-  id:
-    | '__root__'
     | '/'
     | '/auth'
     | '/browse'
     | '/how-it-works'
     | '/vendors'
+    | '/bookings'
+    | '/listings/$slug'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/auth'
+    | '/browse'
+    | '/how-it-works'
+    | '/vendors'
+    | '/bookings'
+    | '/listings/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/browse'
+    | '/how-it-works'
+    | '/vendors'
+    | '/_authenticated/bookings'
     | '/listings/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   BrowseRoute: typeof BrowseRoute
   HowItWorksRoute: typeof HowItWorksRoute
@@ -105,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -135,6 +172,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VendorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/bookings': {
+      id: '/_authenticated/bookings'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof AuthenticatedBookingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/listings/$slug': {
       id: '/listings/$slug'
       path: '/listings/$slug'
@@ -145,8 +189,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBookingsRoute: typeof AuthenticatedBookingsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedBookingsRoute: AuthenticatedBookingsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   BrowseRoute: BrowseRoute,
   HowItWorksRoute: HowItWorksRoute,
