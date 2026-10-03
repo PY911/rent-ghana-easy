@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep vendor applications in a private, applicant-owned review table rather than the public vendors directory, because applicants' contacts and inventory pricing must not be exposed before approval.

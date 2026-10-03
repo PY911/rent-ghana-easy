@@ -153,7 +153,7 @@ function HowItWorks() {
           ))}
         </div>
         <Button asChild size="lg" variant="outline" className="mt-8">
-          <Link to="/vendors">List your items</Link>
+          <Link to="/vendor-application">List your items</Link>
         </Button>
       </section>
 

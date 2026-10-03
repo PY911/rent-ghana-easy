@@ -2,6 +2,7 @@
 - [x] Improve the marketplace UI and visual polish
 - [x] Add "Built with love in Accra" to the footer
 - [x] Add the vendor earnings callout above the footer
+- [ ] Add a private vendor application page and link vendor calls to action to it (database setup pending)
 - [x] Finish and verify the public showcase pages
 - [ ] Pricing model: vendor cost price + public price set by admin (per item)
 - [ ] Booking flow: request dates -> admin confirms -> deposit -> balance due day before

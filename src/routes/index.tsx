@@ -308,7 +308,7 @@ function VendorCta() {
           </p>
         </div>
         <Button asChild size="lg" variant="secondary">
-          <Link to="/vendors">Become a vendor</Link>
+          <Link to="/vendor-application">Become a vendor</Link>
         </Button>
       </div>
     </section>
