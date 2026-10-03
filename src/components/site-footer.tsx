@@ -19,7 +19,7 @@ export function SiteFooter() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-primary-deep text-primary-foreground hover:bg-primary">
-                  <Link to="/vendors">
+                  <Link to="/vendor-application">
                     <Store className="size-4" /> Become a vendor
                   </Link>
                 </Button>
@@ -99,7 +99,7 @@ export function SiteFooter() {
           <h3 className="text-sm font-semibold">For vendors</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li>
-              <Link to="/vendors" className="hover:text-foreground">
+              <Link to="/vendor-application" className="hover:text-foreground">
                 List your items
               </Link>
             </li>

@@ -15,6 +15,13 @@
       "when": 1789779624157,
       "tag": "0001_pricing_and_booking_flow",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791069925982,
+      "tag": "0002_vendor_applications",
+      "breakpoints": true
     }
   ]
 }

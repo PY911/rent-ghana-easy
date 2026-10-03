@@ -78,7 +78,7 @@ export function SiteHeader() {
           </Button>
 
           <Button asChild variant="outline" className="hidden sm:inline-flex">
-            <Link to="/vendors">
+            <Link to="/vendor-application">
               <Store className="size-4" /> List your items
             </Link>
           </Button>
@@ -130,7 +130,7 @@ export function SiteHeader() {
                   </Link>
                 ))}
                 <Link
-                  to="/vendors"
+                  to="/vendor-application"
                   onClick={() => setOpen(false)}
                   className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary"
                 >

@@ -99,7 +99,7 @@ function Vendors() {
           </p>
         </div>
         <Button asChild size="lg" variant="secondary">
-          <Link to="/auth">Become a vendor</Link>
+          <Link to="/vendor-application">Become a vendor</Link>
         </Button>
       </div>
     </div>
