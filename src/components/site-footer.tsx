@@ -11,11 +11,11 @@ export function SiteFooter() {
             <div className="min-w-0">
               <p className="mb-3 text-xs font-bold uppercase text-primary-deep">For rental businesses</p>
               <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-                Put your equipment to work.
+                Monetize Your Assets Today
               </h2>
               <p className="mt-5 max-w-2xl text-sm font-medium leading-7 text-primary-deep/80 sm:text-base">
-                Reach customers across Ghana, manage booking requests, and earn more from items
-                that would otherwise sit idle.
+                Turn your idle equipment and vehicles into a new source of income. Reach renters
+                across Ghana through Y3fr3 Wo.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-primary-deep text-primary-foreground hover:bg-primary">
