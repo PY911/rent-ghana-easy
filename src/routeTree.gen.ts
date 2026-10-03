@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as VendorApplicationRouteImport } from './routes/vendor-application'
 import { Route as VendorsRouteImport } from './routes/vendors'
 import { Route as AuthenticatedBookingsRouteImport } from './routes/_authenticated/bookings'
 import { Route as ListingsSlugRouteImport } from './routes/listings.$slug'
@@ -42,6 +43,11 @@ const HowItWorksRoute = HowItWorksRouteImport.update({
   path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VendorApplicationRoute = VendorApplicationRouteImport.update({
+  id: '/vendor-application',
+  path: '/vendor-application',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VendorsRoute = VendorsRouteImport.update({
   id: '/vendors',
   path: '/vendors',
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/browse': typeof BrowseRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/vendor-application': typeof VendorApplicationRoute
   '/vendors': typeof VendorsRoute
   '/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/browse': typeof BrowseRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/vendor-application': typeof VendorApplicationRoute
   '/vendors': typeof VendorsRoute
   '/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/browse': typeof BrowseRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/vendor-application': typeof VendorApplicationRoute
   '/vendors': typeof VendorsRoute
   '/_authenticated/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/browse'
     | '/how-it-works'
+    | '/vendor-application'
     | '/vendors'
     | '/bookings'
     | '/listings/$slug'
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/browse'
     | '/how-it-works'
+    | '/vendor-application'
     | '/vendors'
     | '/bookings'
     | '/listings/$slug'
@@ -113,6 +124,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/browse'
     | '/how-it-works'
+    | '/vendor-application'
     | '/vendors'
     | '/_authenticated/bookings'
     | '/listings/$slug'
@@ -124,6 +136,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BrowseRoute: typeof BrowseRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  VendorApplicationRoute: typeof VendorApplicationRoute
   VendorsRoute: typeof VendorsRoute
   ListingsSlugRoute: typeof ListingsSlugRoute
 }
@@ -163,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/how-it-works'
       fullPath: '/how-it-works'
       preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor-application': {
+      id: '/vendor-application'
+      path: '/vendor-application'
+      fullPath: '/vendor-application'
+      preLoaderRoute: typeof VendorApplicationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/vendors': {
@@ -206,6 +226,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BrowseRoute: BrowseRoute,
   HowItWorksRoute: HowItWorksRoute,
+  VendorApplicationRoute: VendorApplicationRoute,
   VendorsRoute: VendorsRoute,
   ListingsSlugRoute: ListingsSlugRoute,
 }
