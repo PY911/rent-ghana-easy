@@ -10,6 +10,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/auth")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    redirect: search.redirect === "/vendor-application" ? "/vendor-application" as const : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Sign in to Y3fr3 Wo" },
@@ -25,6 +28,7 @@ export const Route = createFileRoute("/auth")({
 
 function AuthPage() {
   const navigate = useNavigate();
+  const { redirect } = Route.useSearch();
   const { user, loading } = useSession();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [fullName, setFullName] = useState("");
@@ -34,8 +38,8 @@ function AuthPage() {
   const [checkEmail, setCheckEmail] = useState(false);
 
   useEffect(() => {
-    if (!loading && user) navigate({ to: "/bookings", replace: true });
-  }, [loading, user, navigate]);
+    if (!loading && user) navigate({ to: redirect ?? "/bookings", replace: true });
+  }, [loading, user, navigate, redirect]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -46,7 +50,7 @@ function AuthPage() {
           email,
           password,
           options: {
-            emailRedirectTo: window.location.origin,
+            emailRedirectTo: `${window.location.origin}/auth${redirect ? "?redirect=%2Fvendor-application" : ""}`,
             data: { full_name: fullName },
           },
         });
@@ -70,7 +74,7 @@ function AuthPage() {
 
   async function handleGoogle() {
     try {
-      await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
+      await lovable.auth.signInWithOAuth("google", { redirect_uri: `${window.location.origin}/auth${redirect ? "?redirect=%2Fvendor-application" : ""}` });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Google sign-in failed");
     }

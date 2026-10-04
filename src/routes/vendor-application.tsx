@@ -96,9 +96,9 @@ function VendorApplicationPage() {
             <div className="border-t border-border pt-8">
               <h2 className="font-display text-2xl font-semibold">Start your application</h2>
               <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
-                Sign in or create an account to send your business and inventory details securely. Return to this page after signing in.
+                Sign in or create an account to send your business and inventory details securely. We&apos;ll bring you back here afterwards.
               </p>
-              <Button asChild size="lg" className="mt-6"><Link to="/auth">Sign in or create an account <ArrowRight /></Link></Button>
+              <Button asChild size="lg" className="mt-6"><Link to="/auth" search={{ redirect: "/vendor-application" }}>Sign in or create an account <ArrowRight /></Link></Button>
             </div>
           ) : submitted ? (
             <div role="status" className="border-t border-border pt-10">
