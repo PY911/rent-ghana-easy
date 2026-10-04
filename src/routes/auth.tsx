@@ -83,7 +83,7 @@ function AuthPage() {
     <div className="mx-auto grid min-h-[680px] w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:items-center">
       <div className="hidden lg:block">
         <span className="brand-gradient inline-flex size-12 items-center justify-center rounded-xl">
-          <Waves className="size-6 text-primary-foreground" />
+          <Waves className="size-6 text-brand-foreground" />
         </span>
         <h1 className="mt-7 max-w-xl font-display text-5xl font-semibold leading-tight">
           Your rentals, dates and vendors — all in one place.

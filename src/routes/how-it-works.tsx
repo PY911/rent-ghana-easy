@@ -123,7 +123,7 @@ function HowItWorks() {
             <div key={step.title} className="surface-card p-6">
               <div className="flex items-center gap-3">
                 <span className="brand-gradient flex size-10 items-center justify-center rounded-xl">
-                  <step.icon className="size-5 text-primary-foreground" />
+                  <step.icon className="size-5 text-brand-foreground" />
                 </span>
                 <span className="font-display text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   Step {i + 1}

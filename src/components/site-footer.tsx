@@ -18,7 +18,7 @@ export function SiteFooter() {
                 across Ghana through Y3fr3 Wo.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-primary-deep text-primary-foreground hover:bg-primary">
+                <Button asChild size="lg" className="bg-primary-deep text-brand-foreground hover:bg-primary-deep/90">
                   <Link to="/vendor-application">
                     <Store className="size-4" /> Become a vendor
                   </Link>
@@ -43,13 +43,13 @@ export function SiteFooter() {
                 <strong className="font-display text-3xl font-bold sm:text-4xl">4</strong>
                 <span className="mt-2 text-xs font-bold uppercase">Major cities</span>
               </div>
-              <div className="col-span-2 grid min-h-28 grid-cols-[auto_minmax(0,1fr)] items-center gap-4 rounded-2xl bg-primary-deep px-5 py-5 text-primary-foreground shadow-soft sm:px-7">
+              <div className="col-span-2 grid min-h-28 grid-cols-[auto_minmax(0,1fr)] items-center gap-4 rounded-2xl bg-primary-deep px-5 py-5 text-brand-foreground shadow-soft sm:px-7">
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
                   <ShieldCheck className="size-6" aria-hidden="true" />
                 </span>
                 <div className="min-w-0">
                   <strong className="block font-display text-base font-semibold sm:text-lg">Built for Ghana</strong>
-                  <span className="mt-1 flex items-center gap-1.5 text-xs text-primary-foreground/75 sm:text-sm">
+                  <span className="mt-1 flex items-center gap-1.5 text-xs text-brand-foreground/75 sm:text-sm">
                     <MapPin className="size-3.5 shrink-0" aria-hidden="true" /> Accra, Tema, Kumasi &amp; Takoradi
                   </span>
                 </div>
@@ -64,7 +64,7 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
             <span className="brand-gradient flex size-9 items-center justify-center rounded-xl">
-              <Waves className="size-5 text-primary-foreground" />
+              <Waves className="size-5 text-brand-foreground" />
             </span>
             <span className="font-display text-lg font-semibold">Y3fr3 Wo.</span>
           </div>

@@ -41,7 +41,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-4 px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
           <span className="brand-gradient flex size-9 items-center justify-center rounded-xl">
-            <Waves className="size-5 text-primary-foreground" />
+            <Waves className="size-5 text-brand-foreground" />
           </span>
           <span className="font-display text-lg font-semibold">
             Y3fr3 Wo<span className="text-accent">.</span>

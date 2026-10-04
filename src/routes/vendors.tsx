@@ -64,7 +64,7 @@ function Vendors() {
                 className="surface-card lift-hover block p-6"
               >
                 <div className="flex items-start gap-3">
-                  <span className="brand-gradient flex size-12 shrink-0 items-center justify-center rounded-xl font-display text-sm font-semibold text-primary-foreground">
+                  <span className="brand-gradient flex size-12 shrink-0 items-center justify-center rounded-xl font-display text-sm font-semibold text-brand-foreground">
                     {vendor.name.slice(0, 2).toUpperCase()}
                   </span>
                   <div className="min-w-0">
@@ -91,10 +91,10 @@ function Vendors() {
 
       <div className="brand-gradient mt-14 flex flex-col items-start gap-5 rounded-3xl p-8 sm:flex-row sm:items-center sm:justify-between sm:p-12">
         <div>
-          <h2 className="font-display text-2xl font-semibold text-primary-foreground">
+          <h2 className="font-display text-2xl font-semibold text-brand-foreground">
             Run a rental business?
           </h2>
-          <p className="mt-2 text-sm text-primary-foreground/85">
+          <p className="mt-2 text-sm text-brand-foreground/85">
             Join the directory and start receiving booking requests.
           </p>
         </div>
