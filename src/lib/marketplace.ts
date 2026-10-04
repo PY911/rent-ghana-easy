@@ -6,8 +6,13 @@ export type Category = Database["public"]["Tables"]["categories"]["Row"];
 export type Vendor = Database["public"]["Tables"]["vendors"]["Row"];
 export type Listing = Database["public"]["Tables"]["listings"]["Row"];
 export type Booking = Database["public"]["Tables"]["bookings"]["Row"];
-export type PublicVendor = Database["public"]["Views"]["public_vendors"]["Row"];
-export type PublicListing = Database["public"]["Views"]["public_listings"]["Row"];
+export type PublicVendor = Database["public"]["Views"]["public_vendors"]["Row"] & {
+  id: string; name: string; slug: string;
+};
+export type PublicListing = Database["public"]["Views"]["public_listings"]["Row"] & {
+  id: string; vendor_id: string; title: string; slug: string; price_unit: string;
+  min_days: number; quantity: number;
+};
 
 export type ListingWithRelations = PublicListing & {
   vendor: PublicVendor | null;
@@ -20,6 +25,7 @@ export type BookingWithListing = Booking & {
 };
 
 const LISTING_SELECT = "*, vendor:public_vendors(*), category:categories(*)";
+const OWNER_LISTING_SELECT = "*, vendor:vendors(*), category:categories(*)";
 
 export const categoriesQuery = queryOptions({
   queryKey: ["categories"],
@@ -169,7 +175,7 @@ export const topVendorsQuery = queryOptions({
       .order("rating", { ascending: false })
       .limit(4);
     if (error) throw error;
-    return data ?? [];
+    return (data ?? []) as PublicVendor[];
   },
 });
 
@@ -217,7 +223,7 @@ export function vendorListingsQuery(vendorId: string | undefined) {
       if (!vendorId) return [];
       const { data, error } = await supabase
         .from("listings")
-        .select(LISTING_SELECT)
+        .select(OWNER_LISTING_SELECT)
         .eq("vendor_id", vendorId)
         .order("created_at", { ascending: false });
       if (error) throw error;
