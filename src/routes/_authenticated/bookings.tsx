@@ -14,6 +14,8 @@ export const Route = createFileRoute("/_authenticated/bookings")({
       { name: "description", content: "Track your rental booking requests on Y3fr3 Wo." },
       { property: "og:title", content: "My bookings — Y3fr3 Wo" },
       { property: "og:description", content: "Track your rental booking requests on Y3fr3 Wo." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
   }),
