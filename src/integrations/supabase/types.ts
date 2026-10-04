@@ -102,6 +102,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "bookings_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "public_listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "public_vendors"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "bookings_vendor_id_fkey"
             columns: ["vendor_id"]
             isOneToOne: false
@@ -204,6 +218,13 @@ export type Database = {
             columns: ["category_id"]
             isOneToOne: false
             referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "listings_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "public_vendors"
             referencedColumns: ["id"]
           },
           {
@@ -394,15 +415,184 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_listings: {
+        Row: {
+          category_id: string | null
+          city: string | null
+          created_at: string | null
+          description: string | null
+          featured: boolean | null
+          id: string | null
+          images: string[] | null
+          min_days: number | null
+          price: number | null
+          price_unit: string | null
+          quantity: number | null
+          slug: string | null
+          status: string | null
+          title: string | null
+          vendor_id: string | null
+        }
+        Insert: {
+          category_id?: string | null
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          featured?: boolean | null
+          id?: string | null
+          images?: string[] | null
+          min_days?: number | null
+          price?: number | null
+          price_unit?: string | null
+          quantity?: number | null
+          slug?: string | null
+          status?: string | null
+          title?: string | null
+          vendor_id?: string | null
+        }
+        Update: {
+          category_id?: string | null
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          featured?: boolean | null
+          id?: string | null
+          images?: string[] | null
+          min_days?: number | null
+          price?: number | null
+          price_unit?: string | null
+          quantity?: number | null
+          slug?: string | null
+          status?: string | null
+          title?: string | null
+          vendor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listings_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "listings_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "public_vendors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "listings_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      public_vendors: {
+        Row: {
+          about: string | null
+          address: string | null
+          approved: boolean | null
+          city: string | null
+          created_at: string | null
+          id: string | null
+          latitude: number | null
+          logo_url: string | null
+          longitude: number | null
+          name: string | null
+          place_id: string | null
+          rating: number | null
+          review_count: number | null
+          slug: string | null
+          verified: boolean | null
+          website: string | null
+        }
+        Insert: {
+          about?: string | null
+          address?: string | null
+          approved?: boolean | null
+          city?: string | null
+          created_at?: string | null
+          id?: string | null
+          latitude?: number | null
+          logo_url?: string | null
+          longitude?: number | null
+          name?: string | null
+          place_id?: string | null
+          rating?: number | null
+          review_count?: number | null
+          slug?: string | null
+          verified?: boolean | null
+          website?: string | null
+        }
+        Update: {
+          about?: string | null
+          address?: string | null
+          approved?: boolean | null
+          city?: string | null
+          created_at?: string | null
+          id?: string | null
+          latitude?: number | null
+          logo_url?: string | null
+          longitude?: number | null
+          name?: string | null
+          place_id?: string | null
+          rating?: number | null
+          review_count?: number | null
+          slug?: string | null
+          verified?: boolean | null
+          website?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
+      get_public_vendors: {
+        Args: never
+        Returns: {
+          about: string
+          address: string
+          approved: boolean
+          city: string
+          created_at: string
+          id: string
+          latitude: number
+          logo_url: string
+          longitude: number
+          name: string
+          place_id: string
+          rating: number
+          review_count: number
+          slug: string
+          verified: boolean
+          website: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      request_booking: {
+        Args: {
+          p_contact_name: string
+          p_contact_phone: string
+          p_delivery_address: string
+          p_end_date: string
+          p_listing_id: string
+          p_notes?: string
+          p_quantity: number
+          p_start_date: string
+        }
+        Returns: {
+          id: string
+          reference: string
+        }[]
       }
     }
     Enums: {
