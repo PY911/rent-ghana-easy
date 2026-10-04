@@ -149,7 +149,7 @@ export function vendorBySlugQuery(slug: string) {
       const { data: listings, error: listingError } = await supabase
         .from("public_listings")
         .select(LISTING_SELECT)
-        .eq("vendor_id", vendor.id)
+        .eq("vendor_id", vendor.id!)
         .eq("status", "published")
         .order("created_at", { ascending: false });
       if (listingError) throw listingError;
