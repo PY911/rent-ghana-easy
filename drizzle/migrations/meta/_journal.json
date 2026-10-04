@@ -22,6 +22,13 @@
       "when": 1791069925982,
       "tag": "0002_vendor_applications",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791072333388,
+      "tag": "0003_restrict_public_data_and_secure_booking_quotes",
+      "breakpoints": true
     }
   ]
 }
