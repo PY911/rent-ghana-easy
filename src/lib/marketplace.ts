@@ -6,9 +6,11 @@ export type Category = Database["public"]["Tables"]["categories"]["Row"];
 export type Vendor = Database["public"]["Tables"]["vendors"]["Row"];
 export type Listing = Database["public"]["Tables"]["listings"]["Row"];
 export type Booking = Database["public"]["Tables"]["bookings"]["Row"];
+export type PublicVendor = Database["public"]["Views"]["public_vendors"]["Row"];
+export type PublicListing = Database["public"]["Views"]["public_listings"]["Row"];
 
-export type ListingWithRelations = Listing & {
-  vendor: Vendor | null;
+export type ListingWithRelations = PublicListing & {
+  vendor: PublicVendor | null;
   category: Category | null;
 };
 
@@ -17,7 +19,7 @@ export type BookingWithListing = Booking & {
   vendor: Pick<Vendor, "id" | "name" | "slug" | "phone" | "whatsapp"> | null;
 };
 
-const LISTING_SELECT = "*, vendor:vendors(*), category:categories(*)";
+const LISTING_SELECT = "*, vendor:public_vendors(*), category:categories(*)";
 
 export const categoriesQuery = queryOptions({
   queryKey: ["categories"],
@@ -35,7 +37,7 @@ export const featuredListingsQuery = queryOptions({
   queryKey: ["listings", "featured"],
   queryFn: async (): Promise<ListingWithRelations[]> => {
     const { data, error } = await supabase
-      .from("listings")
+      .from("public_listings")
       .select(LISTING_SELECT)
       .eq("status", "published")
       .eq("featured", true)
@@ -50,7 +52,7 @@ export const newestListingsQuery = queryOptions({
   queryKey: ["listings", "newest"],
   queryFn: async (): Promise<ListingWithRelations[]> => {
     const { data, error } = await supabase
-      .from("listings")
+      .from("public_listings")
       .select(LISTING_SELECT)
       .eq("status", "published")
       .order("created_at", { ascending: false })
@@ -72,7 +74,7 @@ export function browseListingsQuery(filters: BrowseFilters) {
   return queryOptions({
     queryKey: ["listings", "browse", filters],
     queryFn: async (): Promise<ListingWithRelations[]> => {
-      let query = supabase.from("listings").select(LISTING_SELECT).eq("status", "published");
+      let query = supabase.from("public_listings").select(LISTING_SELECT).eq("status", "published");
 
       if (filters.q) query = query.ilike("title", `%${filters.q}%`);
       if (filters.city) query = query.eq("city", filters.city);
@@ -103,7 +105,7 @@ export function listingBySlugQuery(slug: string) {
     queryKey: ["listing", slug],
     queryFn: async (): Promise<ListingWithRelations | null> => {
       const { data, error } = await supabase
-        .from("listings")
+        .from("public_listings")
         .select(LISTING_SELECT)
         .eq("slug", slug)
         .maybeSingle();
@@ -120,7 +122,7 @@ export function relatedListingsQuery(categoryId: string | undefined, excludeId: 
     queryFn: async (): Promise<ListingWithRelations[]> => {
       if (!categoryId) return [];
       const { data, error } = await supabase
-        .from("listings")
+        .from("public_listings")
         .select(LISTING_SELECT)
         .eq("status", "published")
         .eq("category_id", categoryId)
@@ -137,21 +139,21 @@ export function vendorBySlugQuery(slug: string) {
     queryKey: ["vendor", slug],
     queryFn: async () => {
       const { data: vendor, error } = await supabase
-        .from("vendors")
+        .from("public_vendors")
         .select("*")
         .eq("slug", slug)
         .maybeSingle();
       if (error) throw error;
       if (!vendor) return null;
       const { data: listings, error: listingError } = await supabase
-        .from("listings")
+        .from("public_listings")
         .select(LISTING_SELECT)
         .eq("vendor_id", vendor.id)
         .eq("status", "published")
         .order("created_at", { ascending: false });
       if (listingError) throw listingError;
       return {
-        vendor: vendor as Vendor,
+        vendor: vendor as PublicVendor,
         listings: (listings ?? []) as unknown as ListingWithRelations[],
       };
     },
@@ -160,9 +162,9 @@ export function vendorBySlugQuery(slug: string) {
 
 export const topVendorsQuery = queryOptions({
   queryKey: ["vendors", "top"],
-  queryFn: async (): Promise<Vendor[]> => {
+  queryFn: async (): Promise<PublicVendor[]> => {
     const { data, error } = await supabase
-      .from("vendors")
+      .from("public_vendors")
       .select("*")
       .order("rating", { ascending: false })
       .limit(4);
