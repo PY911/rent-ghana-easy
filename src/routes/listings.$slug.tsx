@@ -160,7 +160,7 @@ function ListingDetail() {
 
         <aside className="surface-card h-fit p-6 lg:sticky lg:top-24">
           <div className="flex items-center gap-3 border-b border-border pb-5">
-            <span className="brand-gradient flex size-11 items-center justify-center rounded-xl font-display text-xs font-semibold text-primary-foreground">
+            <span className="brand-gradient flex size-11 items-center justify-center rounded-xl font-display text-xs font-semibold text-brand-foreground">
               {listing.vendor?.name.slice(0, 2).toUpperCase()}
             </span>
             <div>

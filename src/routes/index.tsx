@@ -69,15 +69,15 @@ function Hero() {
       <div className="hero-overlay absolute inset-0 -z-10" />
 
       <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-24 sm:px-6 sm:pb-24 sm:pt-32">
-        <span className="inline-flex items-center gap-2 rounded-full bg-background/15 px-3 py-1.5 text-xs font-medium text-primary-foreground backdrop-blur">
+        <span className="inline-flex items-center gap-2 rounded-full bg-background/15 px-3 py-1.5 text-xs font-medium text-image-foreground backdrop-blur">
           <Sparkles className="size-3.5" /> 250+ verified vendors across Ghana
         </span>
-        <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.05] text-primary-foreground sm:text-6xl">
+        <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.05] text-image-foreground sm:text-6xl">
           Y3fr3 wo. We&apos;ll find it.
           <br />
           anywhere in Ghana.
         </h1>
-        <p className="mt-5 max-w-xl text-base text-primary-foreground/85 sm:text-lg">
+        <p className="mt-5 max-w-xl text-base text-image-foreground/85 sm:text-lg">
           Chairs and canopies for the wedding. A generator for the site. An excavator, a pickup, a
           full camera kit. One place, cedi prices, no endless phone calls.
         </p>
@@ -120,7 +120,7 @@ function Hero() {
               key={tag}
               to="/browse"
               search={{ q: tag }}
-              className="rounded-full bg-background/15 px-3 py-1.5 text-xs font-medium text-primary-foreground backdrop-blur transition-colors hover:bg-background/30"
+              className="rounded-full bg-background/15 px-3 py-1.5 text-xs font-medium text-image-foreground backdrop-blur transition-colors hover:bg-background/30"
             >
               {tag}
             </Link>
@@ -171,7 +171,7 @@ function CategoryStrip() {
                   />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/80 to-transparent p-4">
-                  <p className="font-display text-sm font-semibold text-primary-foreground">
+                  <p className="font-display text-sm font-semibold text-image-foreground">
                     {cat.name}
                   </p>
                 </div>
@@ -243,7 +243,7 @@ function HowItWorksTeaser() {
         {steps.map((step, i) => (
           <div key={step.title}>
             <span className="brand-gradient inline-flex size-11 items-center justify-center rounded-xl">
-              <step.icon className="size-5 text-primary-foreground" />
+              <step.icon className="size-5 text-brand-foreground" />
             </span>
             <h3 className="mt-4 font-display text-lg font-semibold">
               {i + 1}. {step.title}
@@ -299,10 +299,10 @@ function VendorCta() {
     <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6">
       <div className="brand-gradient flex flex-col items-start gap-6 rounded-3xl p-8 sm:p-14 md:flex-row md:items-center md:justify-between">
         <div className="max-w-xl">
-          <h2 className="font-display text-2xl font-semibold text-primary-foreground sm:text-3xl">
+          <h2 className="font-display text-2xl font-semibold text-brand-foreground sm:text-3xl">
             Got gear sitting idle? Put it to work.
           </h2>
-          <p className="mt-3 text-sm text-primary-foreground/85 sm:text-base">
+          <p className="mt-3 text-sm text-brand-foreground/85 sm:text-base">
             List your equipment free, set your own prices and get booking requests from renters
             across Ghana.
           </p>
