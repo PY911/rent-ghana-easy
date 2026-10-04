@@ -47,7 +47,6 @@ function ListingDetail() {
     if (!listing) return null;
     return quoteBooking({
       price: Number(listing.price),
-      vendorPrice: listing.vendor_price === null ? null : Number(listing.vendor_price),
       priceUnit: listing.price_unit,
       minDays: listing.min_days,
       quantity,
@@ -96,7 +95,6 @@ function ListingDetail() {
     try {
       const booking = await createBookingRequest({
         listing,
-        renterId: user.id,
         startDate,
         endDate,
         quantity,

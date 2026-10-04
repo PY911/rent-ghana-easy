@@ -1,16 +1,9 @@
 import { queryOptions } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { BookingWithListing, ListingWithRelations } from "@/lib/marketplace";
-import { quoteBooking } from "@/lib/pricing";
-
-export function bookingReference() {
-  const random = Math.random().toString(36).replace(/[^a-z0-9]/g, "").slice(0, 6);
-  return `YW-${random.toUpperCase()}`;
-}
 
 export type BookingRequestInput = {
   listing: ListingWithRelations;
-  renterId: string;
   startDate: string;
   endDate: string;
   quantity: number;
@@ -21,44 +14,21 @@ export type BookingRequestInput = {
 };
 
 export async function createBookingRequest(input: BookingRequestInput) {
-  const quote = quoteBooking({
-    price: Number(input.listing.price),
-    vendorPrice: input.listing.vendor_price === null ? null : Number(input.listing.vendor_price),
-    priceUnit: input.listing.price_unit,
-    minDays: input.listing.min_days,
-    quantity: input.quantity,
-    startDate: input.startDate,
-    endDate: input.endDate,
-  });
-
   const { data, error } = await supabase
-    .from("bookings")
-    .insert({
-      listing_id: input.listing.id,
-      vendor_id: input.listing.vendor_id,
-      renter_id: input.renterId,
-      start_date: input.startDate,
-      end_date: input.endDate,
-      quantity: input.quantity,
-      total: quote.total,
-      vendor_total: quote.vendorTotal,
-      platform_fee: quote.platformFee,
-      deposit_amount: quote.depositAmount,
-      balance_amount: quote.balanceAmount,
-      balance_due_date: quote.balanceDueDate,
-      contact_name: input.contactName,
-      contact_phone: input.contactPhone,
-      delivery_address: input.deliveryAddress,
-      notes: input.notes || null,
-      status: "pending",
-      payment_status: "unpaid",
-      reference: bookingReference(),
-    })
-    .select("id, reference")
-    .single();
+    .rpc("request_booking", {
+      p_listing_id: input.listing.id,
+      p_start_date: input.startDate,
+      p_end_date: input.endDate,
+      p_quantity: input.quantity,
+      p_contact_name: input.contactName,
+      p_contact_phone: input.contactPhone,
+      p_delivery_address: input.deliveryAddress,
+      p_notes: input.notes || null,
+    });
 
   if (error) throw error;
-  return data;
+  if (!data?.[0]) throw new Error("Could not create booking request");
+  return data[0];
 }
 
 export async function cancelBooking(bookingId: string) {
