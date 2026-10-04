@@ -10,9 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    redirect: search.redirect === "/vendor-application" ? "/vendor-application" as const : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { redirect?: "/vendor-application" } =>
+    search["redirect"] === "/vendor-application" ? { redirect: "/vendor-application" } : {},
   head: () => ({
     meta: [
       { title: "Sign in to Y3fr3 Wo" },
