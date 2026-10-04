@@ -6,13 +6,8 @@ export type Category = Database["public"]["Tables"]["categories"]["Row"];
 export type Vendor = Database["public"]["Tables"]["vendors"]["Row"];
 export type Listing = Database["public"]["Tables"]["listings"]["Row"];
 export type Booking = Database["public"]["Tables"]["bookings"]["Row"];
-export type PublicVendor = Database["public"]["Views"]["public_vendors"]["Row"] & {
-  id: string; name: string; slug: string;
-};
-export type PublicListing = Database["public"]["Views"]["public_listings"]["Row"] & {
-  id: string; vendor_id: string; title: string; slug: string; price_unit: string;
-  min_days: number; quantity: number;
-};
+export type PublicVendor = Pick<Vendor, "id" | "name" | "slug" | "city" | "about" | "logo_url" | "verified" | "rating" | "review_count" | "website" | "address" | "latitude" | "longitude" | "place_id" | "approved" | "created_at">;
+export type PublicListing = Pick<Listing, "id" | "vendor_id" | "category_id" | "title" | "slug" | "description" | "price" | "price_unit" | "min_days" | "city" | "quantity" | "images" | "featured" | "status" | "created_at">;
 
 export type ListingWithRelations = PublicListing & {
   vendor: PublicVendor | null;
@@ -175,7 +170,7 @@ export const topVendorsQuery = queryOptions({
       .order("rating", { ascending: false })
       .limit(4);
     if (error) throw error;
-    return (data ?? []) as PublicVendor[];
+    return (data ?? []) as unknown as PublicVendor[];
   },
 });
 

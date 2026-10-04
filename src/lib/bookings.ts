@@ -23,7 +23,7 @@ export async function createBookingRequest(input: BookingRequestInput) {
       p_contact_name: input.contactName,
       p_contact_phone: input.contactPhone,
       p_delivery_address: input.deliveryAddress,
-      p_notes: input.notes || null,
+      p_notes: input.notes || undefined,
     });
 
   if (error) throw error;
