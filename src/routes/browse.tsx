@@ -34,7 +34,7 @@ export const Route = createFileRoute("/browse")({
   }),
   head: () => ({
     meta: [
-      { title: "Browse rentals in Ghana — Y3fr3 Wo" },
+      { title: "Browse rentals in Ghana — Yɛɛ Kɔ" },
       {
         name: "description",
         content:

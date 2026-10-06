@@ -550,6 +550,16 @@ export type Database = {
       }
     }
     Functions: {
+      assert_booking_capacity: {
+        Args: {
+          p_end_date: string
+          p_exclude_booking_id?: string
+          p_listing_id: string
+          p_quantity: number
+          p_start_date: string
+        }
+        Returns: undefined
+      }
       get_public_vendors: {
         Args: never
         Returns: {
@@ -569,6 +579,12 @@ export type Database = {
           slug: string
           verified: boolean
           website: string
+        }[]
+      }
+      get_unavailable_listing_dates: {
+        Args: { p_listing_id: string }
+        Returns: {
+          unavailable_date: string
         }[]
       }
       has_role: {

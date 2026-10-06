@@ -15,7 +15,7 @@ export function SiteFooter() {
               </h2>
               <p className="mt-5 max-w-2xl text-sm font-medium leading-7 text-primary-deep/80 sm:text-base">
                 Turn your idle equipment and vehicles into a new source of income. Reach renters
-                across Ghana through Y3fr3 Wo.
+                across Ghana through Yɛɛ Kɔ.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-primary-deep text-brand-foreground hover:bg-primary-deep/90">
@@ -66,7 +66,7 @@ export function SiteFooter() {
             <span className="brand-gradient flex size-9 items-center justify-center rounded-xl">
               <Waves className="size-5 text-brand-foreground" />
             </span>
-            <span className="font-display text-lg font-semibold">Y3fr3 Wo.</span>
+            <span className="font-display text-lg font-semibold">Yɛɛ Kɔ.</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             Ghana&apos;s rental marketplace. Compare verified vendors for events, construction, power,
@@ -117,7 +117,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border px-4 py-6 text-center text-xs text-muted-foreground sm:px-6">
-        <span>© {new Date().getFullYear()} Y3fr3 Wo.</span>
+        <span>© {new Date().getFullYear()} Yɛɛ Kɔ.</span>
         <span className="mx-2">·</span>
         <span className="inline-flex items-center gap-1">
           Built with <Heart className="size-3 fill-clay text-clay" aria-label="love" /> in Accra

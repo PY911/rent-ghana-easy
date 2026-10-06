@@ -31,6 +31,14 @@ export async function createBookingRequest(input: BookingRequestInput) {
   return data[0];
 }
 
+export async function getUnavailableListingDates(listingId: string): Promise<string[]> {
+  const { data, error } = await supabase.rpc("get_unavailable_listing_dates", {
+    p_listing_id: listingId,
+  });
+  if (error) throw error;
+  return (data ?? []).map((row) => row.unavailable_date);
+}
+
 export async function cancelBooking(bookingId: string) {
   const { error } = await supabase
     .from("bookings")

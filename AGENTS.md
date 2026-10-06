@@ -12,3 +12,4 @@
 - Keep vendor applications in a private, applicant-owned review table rather than the public vendors directory, because applicants' contacts and inventory pricing must not be exposed before approval.
 - Serve public catalogue pages through approved-only views that omit vendor contact and internal pricing fields; direct vendor/profile rows remain owner or admin scoped to prevent exposing private business details.
 - Create booking requests through a database-owned pricing function and permit renters only to cancel pending requests; client-calculated quotes are display-only and must not determine persisted payment amounts.
+- Reserve listing inventory only for confirmed or paid bookings, and enforce date capacity in the database to prevent concurrent overbooking.

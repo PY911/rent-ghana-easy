@@ -44,7 +44,7 @@ export function SiteHeader() {
             <Waves className="size-5 text-brand-foreground" />
           </span>
           <span className="font-display text-lg font-semibold">
-            Y3fr3 Wo<span className="text-accent">.</span>
+            Yɛɛ Kɔ<span className="text-accent">.</span>
           </span>
         </Link>
 
