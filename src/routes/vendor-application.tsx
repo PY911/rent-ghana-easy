@@ -12,10 +12,10 @@ import { Textarea } from "@/components/ui/textarea";
 export const Route = createFileRoute("/vendor-application")({
   head: () => ({
     meta: [
-      { title: "Apply to become a rental provider — Y3fr3 Wo" },
-      { name: "description", content: "Apply to offer your rental equipment, vehicles or event supplies on Y3fr3 Wo in Ghana." },
-      { property: "og:title", content: "Become a rental provider — Y3fr3 Wo" },
-      { property: "og:description", content: "Tell us about your rental business and inventory to join Y3fr3 Wo in Ghana." },
+      { title: "Apply to become a rental provider — Yɛɛ Kɔ" },
+      { name: "description", content: "Apply to offer your rental equipment, vehicles or event supplies on Yɛɛ Kɔ in Ghana." },
+      { property: "og:title", content: "Become a rental provider — Yɛɛ Kɔ" },
+      { property: "og:description", content: "Tell us about your rental business and inventory to join Yɛɛ Kɔ in Ghana." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -82,7 +82,7 @@ function VendorApplicationPage() {
         <p className="mb-4 flex items-center gap-2 text-xs font-bold uppercase text-primary">
           <Store className="size-4" /> For Ghanaian rental providers
         </p>
-        <h1 className="font-display text-4xl font-semibold leading-tight sm:text-5xl">Grow your rental business with Y3fr3 Wo.</h1>
+        <h1 className="font-display text-4xl font-semibold leading-tight sm:text-5xl">Grow your rental business with Yɛɛ Kɔ.</h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
           Tell us about your business and the items you rent out. We&apos;ll review your application before anything goes live.
         </p>
@@ -176,7 +176,7 @@ function VendorApplicationPage() {
         <aside className="border-t border-border pt-6 lg:border-t-0 lg:border-l lg:pl-8">
           <ShieldCheck className="size-7 text-primary" />
           <h2 className="mt-4 font-display text-lg font-semibold">A thoughtful way to rent</h2>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">You share your business details and your own prices. We review your inventory and agree on the public listing prices before your items appear on Y3fr3 Wo.</p>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">You share your business details and your own prices. We review your inventory and agree on the public listing prices before your items appear on Yɛɛ Kɔ.</p>
           <div className="mt-6 space-y-4 border-t border-border pt-6 text-sm">
             <p><span className="font-semibold">01.</span> Send your details</p>
             <p><span className="font-semibold">02.</span> We review your inventory</p>

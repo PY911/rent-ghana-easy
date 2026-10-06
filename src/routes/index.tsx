@@ -24,13 +24,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Y3fr3 Wo — Rent anything in Ghana" },
+      { title: "Yɛɛ Kɔ — Rent anything in Ghana" },
       {
         name: "description",
         content:
           "Rent chairs, canopies, sound systems, generators, excavators, vehicles and camera kits from verified Ghanaian vendors. Compare prices in cedis and book online.",
       },
-      { property: "og:title", content: "Y3fr3 Wo — Ghana's rental marketplace" },
+      { property: "og:title", content: "Yɛɛ Kɔ — Ghana's rental marketplace" },
       {
         property: "og:description",
         content:
@@ -73,7 +73,7 @@ function Hero() {
           <Sparkles className="size-3.5" /> 250+ verified vendors across Ghana
         </span>
         <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.05] text-image-foreground sm:text-6xl">
-          Y3fr3 wo. We&apos;ll find it.
+          Yɛɛ Kɔ. We&apos;ll find it.
           <br />
           anywhere in Ghana.
         </h1>

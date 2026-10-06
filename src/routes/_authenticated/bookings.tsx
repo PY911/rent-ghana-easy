@@ -10,10 +10,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const Route = createFileRoute("/_authenticated/bookings")({
   head: () => ({
     meta: [
-      { title: "My bookings — Y3fr3 Wo" },
-      { name: "description", content: "Track your rental booking requests on Y3fr3 Wo." },
-      { property: "og:title", content: "My bookings — Y3fr3 Wo" },
-      { property: "og:description", content: "Track your rental booking requests on Y3fr3 Wo." },
+      { title: "My bookings — Yɛɛ Kɔ" },
+      { name: "description", content: "Track your rental booking requests on Yɛɛ Kɔ." },
+      { property: "og:title", content: "My bookings — Yɛɛ Kɔ" },
+      { property: "og:description", content: "Track your rental booking requests on Yɛɛ Kɔ." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },

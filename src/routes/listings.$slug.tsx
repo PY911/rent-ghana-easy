@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { BadgeCheck, CalendarDays, CheckCircle2, Loader2, MapPin, ShieldCheck, Truck } from "lucide-react";
 import { toast } from "sonner";
 import { listingBySlugQuery } from "@/lib/marketplace";
-import { createBookingRequest } from "@/lib/bookings";
+import { createBookingRequest, getUnavailableListingDates } from "@/lib/bookings";
+import { formatUnavailableDate, rangeContainsUnavailableDate } from "@/lib/availability";
 import { quoteBooking, DEPOSIT_PERCENT } from "@/lib/pricing";
 import { formatCedis, priceLabel } from "@/lib/format";
 import { useSession } from "@/hooks/use-session";
@@ -17,9 +18,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const Route = createFileRoute("/listings/$slug")({
   head: ({ params }) => ({
     meta: [
-      { title: `${params.slug.replaceAll("-", " ")} rental — Y3fr3 Wo` },
+      { title: `${params.slug.replaceAll("-", " ")} rental — Yɛɛ Kɔ` },
       { name: "description", content: "View rental details, pricing and availability from a verified Ghanaian vendor." },
-      { property: "og:title", content: "Rental details — Y3fr3 Wo" },
+      { property: "og:title", content: "Rental details — Yɛɛ Kɔ" },
       { property: "og:description", content: "View pricing and request rental dates from a verified vendor in Ghana." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -33,6 +34,11 @@ function ListingDetail() {
   const navigate = useNavigate();
   const { user } = useSession();
   const { data: listing, isLoading } = useQuery(listingBySlugQuery(slug));
+  const { data: unavailableDates = [] } = useQuery({
+    queryKey: ["listing-availability", listing?.id],
+    enabled: Boolean(listing?.id),
+    queryFn: () => getUnavailableListingDates(listing?.id ?? ""),
+  });
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -54,6 +60,12 @@ function ListingDetail() {
       endDate,
     });
   }, [listing, quantity, startDate, endDate]);
+  const unavailableDateSet = useMemo(() => new Set(unavailableDates), [unavailableDates]);
+  const selectedDatesUnavailable = rangeContainsUnavailableDate(
+    startDate,
+    endDate,
+    unavailableDateSet,
+  );
 
   if (isLoading) {
     return (
@@ -88,6 +100,10 @@ function ListingDetail() {
     }
     if (!quote || quote.units === 0) {
       toast.error("Choose your start and end dates");
+      return;
+    }
+    if (selectedDatesUnavailable) {
+      toast.error("One or more selected dates are unavailable");
       return;
     }
 
@@ -185,6 +201,30 @@ function ListingDetail() {
               </div>
             </div>
 
+            {unavailableDates.length > 0 ? (
+              <div className="rounded-lg border border-border bg-muted/60 p-3">
+                <p className="text-xs font-semibold">Unavailable dates</p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {unavailableDates.slice(0, 12).map((date) => (
+                    <span key={date} className="rounded-md bg-background px-2 py-1 text-xs text-muted-foreground">
+                      {formatUnavailableDate(date)}
+                    </span>
+                  ))}
+                  {unavailableDates.length > 12 ? (
+                    <span className="px-1 py-1 text-xs text-muted-foreground">
+                      +{unavailableDates.length - 12} more
+                    </span>
+                  ) : null}
+                </div>
+              </div>
+            ) : null}
+
+            {selectedDatesUnavailable ? (
+              <p role="alert" className="text-sm font-medium text-destructive">
+                This item is fully booked during part of your selected date range.
+              </p>
+            ) : null}
+
             <div className="space-y-2">
               <Label htmlFor="quantity">Quantity</Label>
               <Input
@@ -233,7 +273,7 @@ function ListingDetail() {
               </div>
             ) : null}
 
-            <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+            <Button type="submit" size="lg" className="w-full" disabled={submitting || selectedDatesUnavailable}>
               {submitting ? <Loader2 className="size-4 animate-spin" /> : null}
               {user ? "Send booking request" : "Sign in to request"}
             </Button>

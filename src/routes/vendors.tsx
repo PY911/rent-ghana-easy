@@ -23,7 +23,7 @@ const allVendorsQuery = queryOptions({
 export const Route = createFileRoute("/vendors")({
   head: () => ({
     meta: [
-      { title: "Rental vendors in Ghana — Y3fr3 Wo" },
+      { title: "Rental vendors in Ghana — Yɛɛ Kɔ" },
       {
         name: "description",
         content:

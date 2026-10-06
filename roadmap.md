@@ -1,4 +1,4 @@
-- [x] Rebrand all visible Rentafro references to Y3fr3 Wo
+- [x] Rebrand all visible Rentafro references to Yɛɛ Kɔ
 - [x] Improve the marketplace UI and visual polish
 - [x] Add "Built with love in Accra" to the footer
 - [x] Add the vendor earnings callout above the footer
@@ -13,5 +13,5 @@
 - [ ] Admin area: approve vendors/items, set public prices, manage bookings and payments
 - [ ] Collect real vendor prices before launch (blocked: needs vendor input)
 - [ ] Online payments (Mobile Money / card) - later phase
-- [ ] Rename the website to Yɛɛ Kɔ across all visible brand copy and metadata
-- [ ] Mark fully booked dates unavailable after bookings are confirmed or paid
+- [x] Rename the website to Yɛɛ Kɔ across all visible brand copy and metadata
+- [x] Mark fully booked dates unavailable after bookings are confirmed or paid

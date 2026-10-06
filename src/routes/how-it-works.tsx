@@ -20,13 +20,13 @@ import {
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
     meta: [
-      { title: "How Y3fr3 Wo works — Ghana rentals" },
+      { title: "How Yɛɛ Kɔ works — Ghana rentals" },
       {
         name: "description",
         content:
-          "Search, request your dates, get confirmed by a verified Ghanaian vendor, then pay by Mobile Money or card. Here's how renting and listing on Y3fr3 Wo works.",
+          "Search, request your dates, get confirmed by a verified Ghanaian vendor, then pay by Mobile Money or card. Here's how renting and listing on Yɛɛ Kɔ works.",
       },
-      { property: "og:title", content: "How Y3fr3 Wo works" },
+      { property: "og:title", content: "How Yɛɛ Kɔ works" },
       {
         property: "og:description",
         content: "Renting and listing on Ghana's rental marketplace, step by step.",
@@ -109,9 +109,9 @@ function HowItWorks() {
         <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-medium">
           <ShieldCheck className="size-3.5 text-primary" /> Verified vendors only
         </span>
-        <h1 className="mt-5 font-display text-4xl font-semibold sm:text-5xl">How Y3fr3 Wo works</h1>
+        <h1 className="mt-5 font-display text-4xl font-semibold sm:text-5xl">How Yɛɛ Kɔ works</h1>
         <p className="mt-4 text-base text-muted-foreground">
-          Renting gear in Ghana usually means a dozen phone calls and no clear price. Y3fr3 Wo puts
+          Renting gear in Ghana usually means a dozen phone calls and no clear price. Yɛɛ Kɔ puts
           the vendors, the rates and the dates in one place.
         </p>
       </div>

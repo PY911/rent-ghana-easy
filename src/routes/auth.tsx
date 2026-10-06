@@ -14,9 +14,9 @@ export const Route = createFileRoute("/auth")({
     search["redirect"] === "/vendor-application" ? { redirect: "/vendor-application" } : {},
   head: () => ({
     meta: [
-      { title: "Sign in to Y3fr3 Wo" },
+      { title: "Sign in to Yɛɛ Kɔ" },
       { name: "description", content: "Sign in to manage your Ghana rental requests, bookings and listings." },
-      { property: "og:title", content: "Sign in to Y3fr3 Wo" },
+      { property: "og:title", content: "Sign in to Yɛɛ Kɔ" },
       { property: "og:description", content: "Manage your rental requests and listings." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -115,7 +115,7 @@ function AuthPage() {
         ) : (
           <>
             <h2 className="mt-7 font-display text-2xl font-semibold">
-              {mode === "signin" ? "Welcome to Y3fr3 Wo" : "Create your account"}
+              {mode === "signin" ? "Welcome to Yɛɛ Kɔ" : "Create your account"}
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
               {mode === "signin"
