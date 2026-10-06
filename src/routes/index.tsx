@@ -170,7 +170,7 @@ function CategoryStrip() {
                     className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/80 to-transparent p-4">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-image-foreground/80 to-transparent p-4">
                   <p className="font-display text-sm font-semibold text-image-foreground">
                     {cat.name}
                   </p>
