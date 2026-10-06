@@ -36,6 +36,13 @@
       "when": 1791072364223,
       "tag": "0004_safe_public_catalogue_and_admin_booking_updates",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791314129078,
+      "tag": "0005_enforce_booking_availability",
+      "breakpoints": true
     }
   ]
 }
