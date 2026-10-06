@@ -13,3 +13,5 @@
 - [ ] Admin area: approve vendors/items, set public prices, manage bookings and payments
 - [ ] Collect real vendor prices before launch (blocked: needs vendor input)
 - [ ] Online payments (Mobile Money / card) - later phase
+- [ ] Rename the website to Yɛɛ Kɔ across all visible brand copy and metadata
+- [ ] Mark fully booked dates unavailable after bookings are confirmed or paid
