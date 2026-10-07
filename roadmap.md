@@ -8,9 +8,9 @@
 - [ ] Booking flow: request dates -> admin confirms -> deposit -> balance due day before
 - [ ] Keep vendor contact details private on public pages
 - [ ] Real sign in / sign up (email + Google)
-- [ ] Renter bookings pages
+- [x] Renter bookings pages
 - [ ] Vendor login hub (profile, items with cost price, their bookings)
-- [ ] Admin area: approve vendors/items, set public prices, manage bookings and payments
+- [x] Admin area: approve vendors/items, set public prices, manage bookings and payments
 - [ ] Collect real vendor prices before launch (blocked: needs vendor input)
 - [ ] Online payments (Mobile Money / card) - later phase
 - [x] Rename the website to Yɛɛ Kɔ across all visible brand copy and metadata
