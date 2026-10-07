@@ -10,8 +10,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>): { redirect?: "/vendor-application" } =>
-    search["redirect"] === "/vendor-application" ? { redirect: "/vendor-application" } : {},
+  validateSearch: (search: Record<string, unknown>): { redirect?: "/vendor-application"; next?: string } => ({
+    ...(search["redirect"] === "/vendor-application" ? { redirect: "/vendor-application" as const } : {}),
+    ...(typeof search["next"] === "string" && search["next"].startsWith("/") && !search["next"].startsWith("//")
+      ? { next: search["next"] }
+      : {}),
+  }),
   head: () => ({
     meta: [
       { title: "Sign in to Yɛɛ Kɔ" },
@@ -27,7 +31,7 @@ export const Route = createFileRoute("/auth")({
 
 function AuthPage() {
   const navigate = useNavigate();
-  const { redirect } = Route.useSearch();
+  const { redirect, next } = Route.useSearch();
   const { user, loading } = useSession();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [fullName, setFullName] = useState("");
@@ -37,8 +41,11 @@ function AuthPage() {
   const [checkEmail, setCheckEmail] = useState(false);
 
   useEffect(() => {
-    if (!loading && user) navigate({ to: redirect ?? "/bookings", replace: true });
-  }, [loading, user, navigate, redirect]);
+    if (!loading && user) {
+      if (next) window.location.replace(next);
+      else navigate({ to: redirect ?? "/bookings", replace: true });
+    }
+  }, [loading, user, navigate, redirect, next]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -49,7 +56,9 @@ function AuthPage() {
           email,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/auth${redirect ? "?redirect=%2Fvendor-application" : ""}`,
+            emailRedirectTo: next
+              ? `${window.location.origin}/auth?next=${encodeURIComponent(next)}`
+              : `${window.location.origin}/auth${redirect ? "?redirect=%2Fvendor-application" : ""}`,
             data: { full_name: fullName },
           },
         });
@@ -73,7 +82,10 @@ function AuthPage() {
 
   async function handleGoogle() {
     try {
-      await lovable.auth.signInWithOAuth("google", { redirect_uri: `${window.location.origin}/auth${redirect ? "?redirect=%2Fvendor-application" : ""}` });
+      const returnUrl = next
+        ? `${window.location.origin}/auth?next=${encodeURIComponent(next)}`
+        : `${window.location.origin}/auth${redirect ? "?redirect=%2Fvendor-application" : ""}`;
+      await lovable.auth.signInWithOAuth("google", { redirect_uri: returnUrl });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Google sign-in failed");
     }
