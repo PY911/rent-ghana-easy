@@ -4,6 +4,7 @@ import { Menu, Moon, Search, Store, Sun, User, Waves } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
+import { useIsAdmin } from "@/hooks/use-role";
 import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,6 +25,7 @@ const navLinks = [
 
 export function SiteHeader() {
   const { user } = useSession();
+  const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
@@ -96,11 +98,13 @@ export function SiteHeader() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link to="/browse">My bookings</Link>
+                  <Link to="/bookings">My bookings</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/vendors">Vendor hub</Link>
-                </DropdownMenuItem>
+                {isAdmin && (
+                  <DropdownMenuItem asChild>
+                    <Link to="/admin">Admin</Link>
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleSignOut}>Sign out</DropdownMenuItem>
               </DropdownMenuContent>
@@ -138,7 +142,7 @@ export function SiteHeader() {
                 </Link>
                 {user ? (
                   <Link
-                    to="/browse"
+                    to="/bookings"
                     onClick={() => setOpen(false)}
                     className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary"
                   >
