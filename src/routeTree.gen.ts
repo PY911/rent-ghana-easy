@@ -18,6 +18,7 @@ import { Route as McpRouteImport } from './routes/mcp'
 import { Route as VendorApplicationRouteImport } from './routes/vendor-application'
 import { Route as VendorsRouteImport } from './routes/vendors'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedBookingsRouteImport } from './routes/_authenticated/bookings'
 import { Route as ListingsSlugRouteImport } from './routes/listings.$slug'
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
@@ -67,6 +68,11 @@ const Char91DotwellKnownChar93OauthProtectedResourceRoute =
     path: '/.well-known/oauth-protected-resource',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedBookingsRoute = AuthenticatedBookingsRouteImport.update({
   id: '/bookings',
   path: '/bookings',
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/vendor-application': typeof VendorApplicationRoute
   '/vendors': typeof VendorsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/vendor-application': typeof VendorApplicationRoute
   '/vendors': typeof VendorsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/vendor-application': typeof VendorApplicationRoute
   '/vendors': typeof VendorsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/bookings': typeof AuthenticatedBookingsRoute
   '/listings/$slug': typeof ListingsSlugRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/vendor-application'
     | '/vendors'
     | '/.well-known/oauth-protected-resource'
+    | '/admin'
     | '/bookings'
     | '/listings/$slug'
     | '/.lovable/oauth/consent'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/vendor-application'
     | '/vendors'
     | '/.well-known/oauth-protected-resource'
+    | '/admin'
     | '/bookings'
     | '/listings/$slug'
     | '/.lovable/oauth/consent'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/vendor-application'
     | '/vendors'
     | '/.well-known/oauth-protected-resource'
+    | '/_authenticated/admin'
     | '/_authenticated/bookings'
     | '/listings/$slug'
     | '/.lovable/oauth/consent'
@@ -246,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/bookings': {
       id: '/_authenticated/bookings'
       path: '/bookings'
@@ -271,10 +290,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedBookingsRoute: typeof AuthenticatedBookingsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedBookingsRoute: AuthenticatedBookingsRoute,
 }
 
