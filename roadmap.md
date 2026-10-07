@@ -15,3 +15,4 @@
 - [ ] Online payments (Mobile Money / card) - later phase
 - [x] Rename the website to Yɛɛ Kɔ across all visible brand copy and metadata
 - [x] Mark fully booked dates unavailable after bookings are confirmed or paid
+- [x] Add secure agent integrations for rental search, availability and renter bookings
