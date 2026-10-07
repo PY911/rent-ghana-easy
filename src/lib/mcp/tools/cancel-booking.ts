@@ -12,12 +12,14 @@ export default defineTool({
   annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
   handler: async ({ bookingId }, ctx) => {
     if (!ctx.isAuthenticated()) throw new ToolError("Sign in to Yɛɛ Kɔ to cancel a booking.");
+    const userId = ctx.getUserId();
+    if (!userId) throw new ToolError("Your Yɛɛ Kɔ account could not be identified.");
     const supabase = supabaseForUser(ctx);
     const { data, error } = await supabase
       .from("bookings")
       .update({ status: "cancelled" })
       .eq("id", bookingId)
-      .eq("renter_id", ctx.getUserId())
+      .eq("renter_id", userId)
       .eq("status", "pending")
       .select("id,reference,status")
       .maybeSingle();

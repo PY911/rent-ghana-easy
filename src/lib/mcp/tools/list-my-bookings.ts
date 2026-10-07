@@ -12,11 +12,13 @@ export default defineTool({
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: async ({ limit }, ctx) => {
     if (!ctx.isAuthenticated()) throw new ToolError("Sign in to Yɛɛ Kɔ to view bookings.");
+    const userId = ctx.getUserId();
+    if (!userId) throw new ToolError("Your Yɛɛ Kɔ account could not be identified.");
     const supabase = supabaseForUser(ctx);
     const { data, error } = await supabase
       .from("bookings")
       .select("id,reference,listing_id,start_date,end_date,quantity,status,payment_status,total,deposit_amount,balance_amount,balance_due_date,created_at")
-      .eq("renter_id", ctx.getUserId())
+      .eq("renter_id", userId)
       .order("created_at", { ascending: false })
       .limit(limit);
     if (error) throw new ToolError("Your bookings could not be loaded.");

@@ -36,7 +36,7 @@ function publishableKey(): string {
       const parsed: unknown = JSON.parse(keyset);
       if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
         const keys = parsed as Record<string, unknown>;
-        const key = [keys.default, ...Object.values(keys)].find(
+        const key = [keys["default"], ...Object.values(keys)].find(
           (entry): entry is string =>
             typeof entry === "string" && entry.trim().startsWith("sb_publishable_"),
         );
