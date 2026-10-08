@@ -172,8 +172,8 @@ function ItemRow({ listing }: { listing: ListingWithRelations }) {
   const markup = markupPercent(vp, pp);
 
   async function save(approve?: boolean) {
-    if (pp <= 0) return toast.error("Public price must be above zero");
-    if (vp > 0 && pp < vp) return toast.error("Public price is below the vendor's price");
+    if (pp <= 0) { toast.error("Public price must be above zero"); return; }
+    if (vp > 0 && pp < vp) { toast.error("Public price is below the vendor's price"); return; }
     try {
       await updateListingPricing(l.id, {
         price: pp,
@@ -252,7 +252,7 @@ function ApplicationsPanel() {
   });
   async function setStatus(id: string, status: string) {
     const { error } = await supabase.from("vendor_applications").update({ status }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Application updated");
     qc.invalidateQueries({ queryKey: ["admin", "applications"] });
   }
