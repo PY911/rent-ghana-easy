@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "./use-session";
 
 export function useIsAdmin() {
-  const { user } = useSession();
+  const { user, loading: sessionLoading } = useSession();
 
   const { data, isLoading } = useQuery({
     queryKey: ["role", "admin", user?.id],
@@ -21,5 +21,5 @@ export function useIsAdmin() {
     },
   });
 
-  return { isAdmin: data === true, loading: isLoading };
+  return { isAdmin: data === true, loading: sessionLoading || isLoading };
 }
