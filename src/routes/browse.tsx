@@ -4,6 +4,7 @@ import { Search, SlidersHorizontal, X } from "lucide-react";
 import { browseListingsQuery, categoriesQuery } from "@/lib/marketplace";
 import { GHANA_CITIES } from "@/lib/format";
 import { ListingCard } from "@/components/listing-card";
+import { AiMatcher } from "@/components/ai-matcher";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -76,6 +77,10 @@ function Browse() {
         <p className="text-sm text-muted-foreground">
           {activeCategory?.description ?? "Everything available to rent across Ghana today."}
         </p>
+      </div>
+
+      <div className="mt-6">
+        <AiMatcher />
       </div>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[280px_1fr]">
