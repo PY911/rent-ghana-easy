@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AdminDashboard } from "@/components/admin-dashboard";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
@@ -46,13 +47,15 @@ function AdminPage() {
     <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
       <h1 className="font-display text-3xl font-semibold">Admin</h1>
       <p className="mt-1 text-muted-foreground">Bookings, prices, items and vendors in one place.</p>
-      <Tabs defaultValue="bookings" className="mt-8">
+      <Tabs defaultValue="dashboard" className="mt-8">
         <TabsList className="flex-wrap h-auto">
+          <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
           <TabsTrigger value="bookings">Bookings</TabsTrigger>
           <TabsTrigger value="items">Items & prices</TabsTrigger>
           <TabsTrigger value="vendors">Vendors</TabsTrigger>
           <TabsTrigger value="applications">Applications</TabsTrigger>
         </TabsList>
+        <TabsContent value="dashboard"><AdminDashboard /></TabsContent>
         <TabsContent value="bookings"><BookingsPanel /></TabsContent>
         <TabsContent value="items"><ItemsPanel /></TabsContent>
         <TabsContent value="vendors"><VendorsPanel /></TabsContent>
