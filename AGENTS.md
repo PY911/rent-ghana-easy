@@ -14,3 +14,4 @@
 - Create booking requests through a database-owned pricing function and permit renters only to cancel pending requests; client-calculated quotes are display-only and must not determine persisted payment amounts.
 - Reserve listing inventory only for confirmed or paid bookings, and enforce date capacity in the database to prevent concurrent overbooking.
 - Expose assistant access through OAuth-authenticated MCP tools that forward the caller token so existing row-level permissions remain authoritative.
+- Run AI rental recommendations in a server function that only lets the model choose from published catalogue rows, so suggestions can never invent items, prices or availability.
