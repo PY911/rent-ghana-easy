@@ -1,8 +1,5 @@
 # Rent Ghana Now
 
-I want to build a full e-commerce site for rentals for Ghana, take inspiration from https://www.excoban.com/ and make it much more better and intuitive and way better
-
-This project was built with [Lovable](https://lovable.dev).
 
 **Live app**: https://rent-ghana-easy.lovable.app
 
