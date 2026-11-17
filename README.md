@@ -21,3 +21,5 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+Copy `.env.example` to `.env` and fill in the project configuration before starting the app. Keep `.env` local and uncommitted. Values prefixed with `VITE_` are included in the client bundle; use only publishable configuration there, and restrict browser API keys by allowed referrers and APIs. Store server-only credentials in the hosting provider's environment settings.
